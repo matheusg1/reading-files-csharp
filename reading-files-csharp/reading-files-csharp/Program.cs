@@ -9,8 +9,7 @@ namespace reading_files_csharp
     {
         static void Main(string[] args)
         {
-            exercicioResolvido();
-            //Console.WriteLine("1: File and FileInfo\n2:FileStream and StreamReader\n3: Bloco using\n4: StreamWriter\n5: Directory and DirectoryInfo\n6: Path");
+            Console.WriteLine("1: File and FileInfo\n2:FileStream and StreamReader\n3: Bloco using\n4: StreamWriter\n5: Directory and DirectoryInfo\n6: Path\n7: Solved exercise");
             int escolha = int.Parse(Console.ReadLine());
             
             switch (escolha)
@@ -31,7 +30,10 @@ namespace reading_files_csharp
                     DirectoryAndDirectoryInfo();
                     break;
                 case 6:
-                    MetodoPath();
+                    PathMethod();
+                    break;
+                default:
+                    SolvedExercise();
                     break;
             }
         }
@@ -55,7 +57,7 @@ namespace reading_files_csharp
             }
             catch (IOException e)
             {
-                Console.WriteLine("Um erro ocorreu");
+                Console.WriteLine("An error occurred");
                 Console.WriteLine(e.Message);
             }
         }
@@ -91,7 +93,7 @@ namespace reading_files_csharp
             }
             catch (Exception e)
             {
-                Console.WriteLine("Erro");
+                Console.WriteLine("Error");
                 Console.WriteLine(e.Message);
             }
             finally
@@ -132,7 +134,7 @@ namespace reading_files_csharp
             }
             catch (IOException e)
             {
-                Console.WriteLine("ERRO" + e.Message);
+                Console.WriteLine("ERROR" + e.Message);
             }
         }
 
@@ -155,7 +157,7 @@ namespace reading_files_csharp
             }
             catch (IOException e)
             {
-                Console.WriteLine("ERRO" + e.Message);
+                Console.WriteLine($"ERROR { e.Message }");
             }
         }
 
@@ -190,11 +192,11 @@ namespace reading_files_csharp
             }
             catch (IOException e)
             {
-                Console.WriteLine("ERRO" + e.Message);
+                Console.WriteLine("ERROR" + e.Message);
             }
         }
 
-        public static void MetodoPath()
+        public static void PathMethod()
         {
             string path = @"C:\Users\matheus.silva\Documents\ProjetosPessoais\reading-files-csharp\reading-files-csharp\reading-files-csharp\file1.txt";
             
@@ -211,7 +213,7 @@ namespace reading_files_csharp
             Console.WriteLine("GetDirectoryName " + Path.GetDirectoryName(path));
         }
 
-        public static void exercicioResolvido()
+        public static void SolvedExercise()
         {
             string sourcePath = @"C:\Users\matheus.silva\Documents\ProjetosPessoais\reading-files-csharp\reading-files-csharp\reading-files-csharp\produtos.csv";
             Directory.CreateDirectory(@"C:\Users\matheus.silva\Documents\ProjetosPessoais\reading-files-csharp\reading-files-csharp\reading-files-csharp\out");
@@ -225,25 +227,24 @@ namespace reading_files_csharp
                 {
                     foreach (string line in lines)
                     {
-                        //Console.WriteLine("linha aqui");
                         string[] tempLines = line.Split(",");
-                        string nome = tempLines[0];
+                        string name = tempLines[0];
                         //decimal valor = decimal.Parse(tempLines[1]); Sem o InvariantCulture, formata errado
-                        decimal valor = decimal.Parse(tempLines[1], CultureInfo.InvariantCulture);
-                        int quantidade = int.Parse(tempLines[2]);
+                        decimal price = decimal.Parse(tempLines[1], CultureInfo.InvariantCulture);
+                        int quantity = int.Parse(tempLines[2]);
 
-                        decimal ValorTotalProdutor = valor * quantidade;
+                        decimal totalValueOfProduct = price * quantity;
 
-                        sw.Write((nome + "," + ValorTotalProdutor.ToString("n2") + "\n"), CultureInfo.InvariantCulture);
+                        sw.Write((name + "," + totalValueOfProduct.ToString("n2") + "\n"), CultureInfo.InvariantCulture);
                     }
                 }
             }
             catch (IOException e)
             {
-                Console.WriteLine("ERRO!");
+                Console.WriteLine("ERROR!");
                 Console.WriteLine(e.Message);
             }
-            Console.WriteLine("terminou");
+            Console.WriteLine("Finished");
         }
     }
 }
