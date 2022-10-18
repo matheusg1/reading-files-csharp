@@ -6,4 +6,10 @@
     <RootNamespace>reading_files_csharp</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="out\**" />
+    <EmbeddedResource Remove="out\**" />
+    <None Remove="out\**" />
+  </ItemGroup>
+
 </Project>
